@@ -34,7 +34,14 @@
                             <outlet property="delegate" destination="HMz-oh-Axd" id="Xd8-Ov-zfK"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Todoey" id="gpb-Rh-sch"/>
+                    <navigationItem key="navigationItem" title="Todoey" id="gpb-Rh-sch">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="9RS-wL-car">
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="AddButtonPressed:" destination="HMz-oh-Axd" id="Z2D-Q4-8hh"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XCC-L7-qMY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

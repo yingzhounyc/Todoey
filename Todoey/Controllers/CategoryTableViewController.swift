@@ -20,7 +20,7 @@ class CategoryTableViewController: UITableViewController {
         
         print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
         
- //    loadCategories()
+     loadCategories()
     }
     
     //Mark: - TableView Datasource Methods
@@ -32,7 +32,6 @@ class CategoryTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell", for: indexPath)
- //       let category = categories[indexPath.row]
         
        cell.textLabel?.text = categories?[indexPath.row].name ?? "No categories added yet"
         

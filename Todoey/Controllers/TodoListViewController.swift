@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import CoreData
+import RealmSwift
 
 class TodoListViewController: UITableViewController {
 
@@ -15,10 +15,10 @@ class TodoListViewController: UITableViewController {
     
     var selectedCategory : Category?{
         didSet{
-            loadItems()
+ //           loadItems()
         }
     }
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+//    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,7 +52,7 @@ class TodoListViewController: UITableViewController {
         
         itemArray[indexPath.row].done = !itemArray[indexPath.row].done
    
-        saveItems()
+//        saveItems()
         
         tableView.deselectRow(at: indexPath, animated: true)
     }
@@ -69,13 +69,13 @@ class TodoListViewController: UITableViewController {
             
            
             
-            let newItem = Item(context: self.context)
-            newItem.title = textField.text!
-            newItem.done = false
-            newItem.parentCategory = self.selectedCategory
-            self.itemArray.append(newItem)
+//            let newItem = Item(context: self.context)
+//            newItem.title = textField.text!
+//            newItem.done = false
+//            newItem.parentCategory = self.selectedCategory
+//            self.itemArray.append(newItem)
             
-            self.saveItems()
+//            self.saveItems()
         }
         
         alert.addTextField { (alertTextField) in
@@ -88,50 +88,50 @@ class TodoListViewController: UITableViewController {
     }
     
     //MARK: - Model Manipulation Methods
-    func saveItems() {
-       
-        
-        do {
-            try context.save()
-            
-        } catch {
-           print("Error saving context \(error)")
-            
-        }
-        self.tableView.reloadData()
-    }
+//    func saveItems() {
+//
+//
+//        do {
+//            try context.save()
+//
+//        } catch {
+//           print("Error saving context \(error)")
+//
+//        }
+//        self.tableView.reloadData()
+//    }
     
-    func loadItems(with request: NSFetchRequest<Item> = Item.fetchRequest()) {
-       
-        do{
-            itemArray = try context.fetch(request)
-        } catch{
-            print("Error fetching data from context, \(error)")
-        }
-        tableView.reloadData()
-    }
+//    func loadItems(with request: NSFetchRequest<Item> = Item.fetchRequest()) {
+//
+//        do{
+//            itemArray = try context.fetch(request)
+//        } catch{
+//            print("Error fetching data from context, \(error)")
+//        }
+//        tableView.reloadData()
+//    }
 }
 
 //Mark: Search Bar Patterns
 
-extension TodoListViewController: UISearchBarDelegate {
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        let request : NSFetchRequest<Item> = Item.fetchRequest()
-        
-       request.predicate = NSPredicate(format: "title CONTAINS[cd] %@", searchBar.text!)
-        // [cd] means not case sensitive or diacretic sensitive
-       
-       request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
-       
-        loadItems(with: request)
-    }
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if searchBar.text?.count == 0 {
-            loadItems()
-            DispatchQueue.main.async {
-                 searchBar.resignFirstResponder()
-            }
-           
-        }
-    }
-}
+//extension TodoListViewController: UISearchBarDelegate {
+//    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+//        let request : NSFetchRequest<Item> = Item.fetchRequest()
+//        
+//       request.predicate = NSPredicate(format: "title CONTAINS[cd] %@", searchBar.text!)
+//        // [cd] means not case sensitive or diacretic sensitive
+//
+//       request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
+//
+//        loadItems(with: request)
+//    }
+//    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+//        if searchBar.text?.count == 0 {
+//            loadItems()
+//            DispatchQueue.main.async {
+//                 searchBar.resignFirstResponder()
+//            }
+//
+//        }
+//    }
+//}
